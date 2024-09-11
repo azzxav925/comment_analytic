@@ -10,16 +10,99 @@ api_id = 20276100
 api_hash = 'c2fd39c72ef6b2bc3062ec34671435ab'
 phone_number = '+998917776365'
 group_name = 'ASDiscussiongroup'
-message_id = 838363
 
 client = TelegramClient('comments', api_id, api_hash)
+categorised_comments = [
+    {
+        "type": "Positive Feedback",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Negative Feedback",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Questions",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Suggestions/Advice",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Requests for Assistance",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "General Discussion",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Technical Issues",
+        "number": 0,
+        "comment_ids": []
+    },
+    {
+        "type": "Acknowledgements",
+        "number": 0,
+        "comment_ids": []
+    }
+]
 
+final_categorised_comments = [
+    {
+        "type": "Positive Feedback",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Negative Feedback",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Questions",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Suggestions/Advice",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Requests for Assistance",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "General Discussion",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Technical Issues",
+        "number": 0,
+        "comments": []
+    },
+    {
+        "type": "Acknowledgements",
+        "number": 0,
+        "comments": []
+    }
+]
 
-async def main():
+async def comments():
     await client.start(phone_number)
     group = await client.get_entity(group_name)
     comments = []
-    async for message in client.iter_messages(group, limit=1000):
+    async for message in client.iter_messages(group, limit=100):
         try:
             if message.reply_to:
                 comments.append({
@@ -45,4 +128,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    asyncio.run(comments())
